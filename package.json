@@ -1,0 +1,64 @@
+{
+	"name": "ava-launch",
+	"displayName": "ava-launch",
+	"description": "instant debug/run of specific AVA tests supporting multiple npm scripts",
+	"icon": "images/ava-launch-icon.png",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.62.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onLanguage:typescript",
+		"onLanguage:javascript"
+	],
+	"main": "./out/extension.js",
+	"publisher": "YizYak",
+	"contributes": {
+		"configuration": {
+			"title": "avaLaunch",
+			"properties": {
+				"ava-launch.tempTestFileExtension": {
+					"type": "string",
+					"markdownDescription": "Default extension for temp tests.  Ideal for gathering data for a permanent test or one-time exploration."
+				},
+				"ava-launch.tempTestFileScript": {
+					"type": "string",
+					"markdownDescription": "npm script for running temp tests.  You can just use test, but a designated temp test will let you control timeout and other things."
+				},
+				"ava-launch.integrationTestFileExtension": {
+					"type": "string",
+					"markdownDescription": "Default extension for integration tests.  You probably will need to increase the timeout."
+				},
+				"ava-launch.integrationTestFileScript": {
+					"type": "string",
+					"markdownDescription": "npm script for running your integration tests. Mostly necessary for an increased timeout, but you may want to control the rest of your configuration."
+				}
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"lint": "eslint src --ext ts",
+		"lint-fix": "eslint src --fix --ext ts",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.62.0",
+		"@types/glob": "^7.1.4",
+		"@types/mocha": "^9.0.0",
+		"@types/node": "14.x",
+		"@typescript-eslint/eslint-plugin": "^5.1.0",
+		"@typescript-eslint/parser": "^5.1.0",
+		"eslint": "^8.1.0",
+		"glob": "^7.1.7",
+		"mocha": "^9.1.3",
+		"typescript": "^4.4.4",
+		"@vscode/test-electron": "^1.6.2"
+	}
+}
