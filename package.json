@@ -16,6 +16,10 @@
 	],
 	"main": "./out/extension.js",
 	"publisher": "YizYak",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/YizYah/ava-launch"
+	  },
 	"contributes": {
 		"configuration": {
 			"title": "avaLaunch",
