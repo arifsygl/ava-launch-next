@@ -64,9 +64,8 @@ export class CodelensProvider implements CodeLensProvider {
                         }
                     ))
                 }
-                return this.codeLenses
             }
-
+            return this.codeLenses
         } catch (e: any) {
             window.showErrorMessage(e.message)
         }
