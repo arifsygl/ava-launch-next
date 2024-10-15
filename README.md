@@ -1,4 +1,13 @@
-﻿# ava-launch
+﻿## What's New in Ava-Launch-Next
+
+This fork includes the following important fixes:
+
+- **Fixed Debug Test**: The `debugTest` functionality was broken in the original version and has now been fixed.
+- **Fixed Run Test on Windows**: The `runTest` command previously didn't work on Windows. This issue has been resolved, allowing seamless test execution on Windows environments.
+
+# ava-launch-next (Fork)
+
+This is a fork of the original [ava-launch](https://github.com/YizYah/ava-launch) project.
 
 Debug and run single AVA (<https://github.com/avajs/ava>) tests easily using multiple npm scripts. Supports both unit and integration tests.
 
