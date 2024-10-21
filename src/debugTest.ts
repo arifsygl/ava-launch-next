@@ -1,16 +1,24 @@
-import { debug, window, workspace } from "vscode"
-import { currentFilePath } from "./utils/currentFilePath"
+import { platform } from "os";
+import { debug, window, workspace } from "vscode";
+import { currentFilePath } from "./utils/currentFilePath";
 
 export function debugTest(test: string) {
   try {
-    const filePath = currentFilePath()
+    let filePath = currentFilePath();
 
     // if there's a multi-root workspace, we need to find the one with our file.
     const workspaceFolder = workspace.workspaceFolders?.filter((folder) =>
       filePath.includes(folder.uri.path)
-    )[0]
+    )[0];
 
-    const projectDir = workspaceFolder?.uri.path
+    let projectDir = workspaceFolder?.uri.path;
+
+    if (platform() === "win32") {
+      filePath = filePath.startsWith("/") ? filePath.slice(1) : filePath;
+      projectDir = projectDir?.startsWith("/")
+        ? projectDir.slice(1)
+        : projectDir;
+    }
 
     const config = {
       type: "node",
@@ -28,10 +36,10 @@ export function debugTest(test: string) {
       ],
       outputCapture: "std",
       skipFiles: ["<node_internals>/**/*.js"],
-    }
+    };
 
-    debug.startDebugging(workspaceFolder, config)
+    debug.startDebugging(workspaceFolder, config);
   } catch (e: any) {
-    window.showErrorMessage(e.message)
+    window.showErrorMessage(e.message);
   }
 }
